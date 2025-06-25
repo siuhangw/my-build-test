@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             MyBuildTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Android this is a new release v0.0.2!",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -42,6 +42,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MyBuildTestTheme {
-        Greeting("Android this is a new release v0.0.1")
+        Greeting("Android this is a new release v0.0.2!")
     }
 }
