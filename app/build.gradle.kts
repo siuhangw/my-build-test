@@ -31,7 +31,20 @@ android {
 //    Signing Configs
     signingConfigs {
         create("release") {
-            if (keystorePropertiesFile.exists()) {
+            // Read from Gradle properties passed by GitHub Actions
+            val storeFileProp = project.findProperty("storeFile")?.toString()
+            val storePasswordProp = project.findProperty("storePassword")?.toString()
+            val keyAliasProp = project.findProperty("keyAlias")?.toString()
+            val keyPasswordProp = project.findProperty("keyPassword")?.toString()
+
+            // CI Environment (GitHub Actions)
+            if  (System.getenv("CI") != null) {
+                storeFile = file("keystore.jks")
+                storePassword = System.getenv("STORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }else if (keystorePropertiesFile.exists()) {
+                // Local Environment
                 storeFile = file(keystoreProperties.getProperty("storeFile"))
                 storePassword = keystoreProperties.getProperty("storePassword")
                 keyAlias = keystoreProperties.getProperty("keyAlias")
