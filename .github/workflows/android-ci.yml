@@ -38,6 +38,11 @@ jobs:
         run: |
           echo "${{ secrets.SIGNING_KEY_BASE64 }}" | base64 --decode > ${{ github.workspace }}/app/my-app-key.jks
 
+      # Step 4.5: Make gradlew executable
+      # On Linux runners, the gradlew script needs to be given execute permissions
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       # Step 5: Build the signed App Bundle (AAB)
       # It uses the secrets to populate the gradle properties for signing
       - name: Build with Gradle
