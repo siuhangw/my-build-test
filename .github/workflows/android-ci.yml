@@ -51,7 +51,7 @@ jobs:
       # It uses the secrets to populate the gradle properties for signing
       - name: Build with Gradle
         run: |
-          ./gradlew assembleRelease \
+          ./gradlew bundleRelease \
             -PstorePassword="${{ secrets.KEYSTORE_PASSWORD }}" \
             -PkeyPassword="${{ secrets.KEY_PASSWORD }}" \
             -PkeyAlias="${{ secrets.KEY_ALIAS }}" \
@@ -59,8 +59,10 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       # Step 5.5: Verify Build Location:
-      - name: List build outputs
-        run: ls -la app/build/outputs/bundle/release/
+      - name: Verify AAB Generation
+        run: |
+          echo "Checking build outputs:"
+          ls -R app/build/outputs/bundle/
 
       # Step 6: Upload the generated App Bundle as an artifact
       # This makes the .aab file available for download from the workflow run page
