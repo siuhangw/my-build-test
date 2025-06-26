@@ -58,10 +58,14 @@ jobs:
             -PstoreFile=my-app-key.jks
         working-directory: ${{ github.workspace }}
 
+      # Step 5.5: Verify Build Location:
+      - name: List build outputs
+        run: ls -la app/build/outputs/bundle/release/
+
       # Step 6: Upload the generated App Bundle as an artifact
       # This makes the .aab file available for download from the workflow run page
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT_NAME }}
-          path: app/build/outputs/bundle/release/${{ env.OUTPUT_NAME }}.aab
+          name: app-release-bundle
+          path: app/build/outputs/bundle/release/*.aab
