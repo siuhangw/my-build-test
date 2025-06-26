@@ -63,5 +63,5 @@ jobs:
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: app-release-bundle
           path: app/build/outputs/bundle/**/*.aab
