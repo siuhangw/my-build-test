@@ -30,7 +30,7 @@ jobs:
 
       # Add this new step to grant execute permission
       - name: Grant execute permission for gradlew
-        run: chmod +x./gradlew
+        run: chmod +x ./gradlew
 
       # Step 3: Set up Gradle for caching, which speeds up future builds
       - name: Setup Gradle
