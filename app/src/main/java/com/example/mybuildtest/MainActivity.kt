@@ -42,6 +42,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MyBuildTestTheme {
-        Greeting("Android this is a new release v0.0.2!")
+        Greeting("Android this is a new release v0.0.3!")
     }
 }
